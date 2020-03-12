@@ -7,7 +7,7 @@ import io.reactivex.Single
 import javax.xml.ws.Response
 
 interface RemoteDataSource {
-    fun listClassicPokemons(pokedexId: Int): Single<MutableList<PokemonClassic>>
+    fun getClassicPokemonList(pokedexId: Int): Single<MutableList<PokemonClassic>>
 
     fun catchPokemon(id: Int): Single<Pokemon?>
 }

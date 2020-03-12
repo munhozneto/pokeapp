@@ -1,13 +1,13 @@
-package com.pedromunhoz.data_remote.test
+package com.pedromunhoz.data_remote
 
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import com.pedromunhoz.data_remote.PokeRemoteDataSource
 import com.pedromunhoz.data_remote.mapper.PokemonClassicMapper
 import com.pedromunhoz.data_remote.model.ClassicPokemonListResponse
 import com.pedromunhoz.data_remote.service.PokeApiService
+import com.pedromunhoz.data_remote.test.RemoteDataFactory
 import com.pedromunhoz.domain.model.PokemonClassic
 import io.reactivex.Single
 import org.junit.Test
@@ -22,24 +22,35 @@ class PokeRemoteDataSourceTest {
     @Test
     fun `Should assert complete when get classic pokemon list`() {
         stubPokeApiServiceListClassicPokemon(
-            Single.just(RemoteDataFactory.makeClassicPokemonList(1))
+            Single.just(
+                RemoteDataFactory.makeClassicPokemonList(
+                    1
+                )
+            )
         )
-        val testObserver = remote.listClassicPokemons(any()).test()
+        val testObserver = remote.getClassicPokemonList(any()).test()
         testObserver.assertComplete()
     }
 
     @Test
     fun `Should call server`() {
         stubPokeApiServiceListClassicPokemon(
-            Single.just(RemoteDataFactory.makeClassicPokemonList(1))
+            Single.just(
+                RemoteDataFactory.makeClassicPokemonList(
+                    1
+                )
+            )
         )
-        remote.listClassicPokemons(any()).test()
+        remote.getClassicPokemonList(any()).test()
         verify(service).listClassicPokemons(any())
     }
 
     @Test
     fun `Should returns data`() {
-        val remotePokemonClassicList = RemoteDataFactory.makeClassicPokemonList(5)
+        val remotePokemonClassicList =
+            RemoteDataFactory.makeClassicPokemonList(
+                5
+            )
         stubPokeApiServiceListClassicPokemon(
             Single.just(remotePokemonClassicList)
         )
@@ -51,7 +62,7 @@ class PokeRemoteDataSourceTest {
             domainPokemonClassicList.add(pokemonClassic)
         }
 
-        val testObserver = remote.listClassicPokemons(any()).test()
+        val testObserver = remote.getClassicPokemonList(any()).test()
 
         testObserver.assertValue { result ->
             result.sortedBy { it.id } == domainPokemonClassicList.sortedBy { it.id }

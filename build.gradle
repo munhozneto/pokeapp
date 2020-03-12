@@ -27,14 +27,17 @@ buildscript {
         mockito_kotlin_version = '2.1.0'
         nav_version = '2.2.1'
         glide_version = '4.9.0'
+        room_version = '2.2.3'
+        arch_core_version = '2.1.0'
         playservices_version = '17.0.0'
         recylerview_version = '1.1.0'
-        room_version = "2.1.0"
         rxandroid_version = "2.1.1"
         rxjava_version = "2.2.10"
-        testrunner_version = '1.2.0'
+        test_core_version = '1.2.0'
+        testrunner_version = '1.1.1'
         assertj_version = '3.8.0'
         mockitokotlin_version = '1.6.0'
+        robolectric_version = '4.2'
     }
     repositories {
         google()
@@ -54,7 +57,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 

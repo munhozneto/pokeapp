@@ -1,0 +1,17 @@
+package com.pedromunhoz.data
+
+import com.pedromunhoz.domain.model.FavoritePokemon
+import io.reactivex.Completable
+import io.reactivex.Maybe
+import io.reactivex.Single
+
+interface LocalDataSource {
+
+    fun hasPokeFavorite(id: Int): Maybe<FavoritePokemon>
+
+    fun getPokeFavorites():  Maybe<MutableList<FavoritePokemon>>
+
+    fun insert(favoritePokemon: FavoritePokemon): Completable
+
+    fun delete(id: Int): Completable
+}

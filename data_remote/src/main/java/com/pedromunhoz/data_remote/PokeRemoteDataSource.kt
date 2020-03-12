@@ -12,7 +12,7 @@ class PokeRemoteDataSource(
     private val pokeApiService: PokeApiService
 ) : RemoteDataSource {
 
-    override fun listClassicPokemons(pokedexId: Int): Single<MutableList<PokemonClassic>> {
+    override fun getClassicPokemonList(pokedexId: Int): Single<MutableList<PokemonClassic>> {
         return pokeApiService.listClassicPokemons(pokedexId)
             .map { responseList ->
                 responseList.pokemonClassicList.map {
