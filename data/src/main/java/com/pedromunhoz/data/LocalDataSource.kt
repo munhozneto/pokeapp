@@ -7,7 +7,7 @@ import io.reactivex.Single
 
 interface LocalDataSource {
 
-    fun hasPokeFavorite(id: Int): Maybe<FavoritePokemon>
+    fun hasPokeFavorite(id: Int): Maybe<Boolean>
 
     fun getPokeFavorites():  Maybe<MutableList<FavoritePokemon>>
 

@@ -1,13 +1,11 @@
 package com.pedromunhoz.data
 
-import com.pedromunhoz.domain.model.ClassicPokemonList
 import com.pedromunhoz.domain.model.Pokemon
 import com.pedromunhoz.domain.model.PokemonClassic
-import io.reactivex.Single
-import javax.xml.ws.Response
+import io.reactivex.Flowable
 
 interface RemoteDataSource {
-    fun getClassicPokemonList(pokedexId: Int): Single<MutableList<PokemonClassic>>
+    fun getClassicPokemonList(pokedexId: Int): Flowable<MutableList<PokemonClassic>>
 
-    fun catchPokemon(id: Int): Single<Pokemon?>
+    fun catchPokemon(id: Int): Flowable<Pokemon?>
 }

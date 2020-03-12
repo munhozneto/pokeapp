@@ -4,6 +4,7 @@ import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.pedromunhoz.data_local.test.DomainDataFactory
+import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import junit.framework.Assert.assertFalse
@@ -48,11 +49,7 @@ class PokeRepositoryTest {
     fun `should remove a favorite pokemon`() {
         val favoritePokemon = DomainDataFactory.makeFavoritePokemon()
 
-        whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(
-            Maybe.just(
-                favoritePokemon
-            )
-        )
+        whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.just(true))
 
         val testObserver = pokeRepository.updateFavorite(favoritePokemon).test()
         testObserver.assertComplete()
@@ -71,18 +68,14 @@ class PokeRepositoryTest {
             .toMutableList()
 
         whenever(remoteDataSource.getClassicPokemonList(1)).thenReturn(
-            Single.just(
+            Flowable.just(
                 pokemonClassicList
             )
         )
 
-        whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(
-            Maybe.just(
-                favoritePokemon
-            )
-        )
+        whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.just(true))
 
-        val result = pokeRepository.getClassicPokemonList(1).blockingGet()
+        val result = pokeRepository.getClassicPokemonList(1).blockingFirst()
 
         result.map {
             assertTrue(it.isFavorite)
@@ -99,11 +92,11 @@ class PokeRepositoryTest {
             }
             .toMutableList()
 
-        whenever(remoteDataSource.getClassicPokemonList(1)).thenReturn(Single.just(pokemonClassicList))
+        whenever(remoteDataSource.getClassicPokemonList(1)).thenReturn(Flowable.just(pokemonClassicList))
 
         whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.empty())
 
-        val result = pokeRepository.getClassicPokemonList(1).blockingGet()
+        val result = pokeRepository.getClassicPokemonList(1).blockingFirst()
 
         result.map {
             assertFalse(it.isFavorite)

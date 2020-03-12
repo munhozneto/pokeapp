@@ -27,11 +27,8 @@ class PokeDataSource(
 
     private val favoritePokemonDao = database.favoritePokemonDao()
 
-    override fun hasPokeFavorite(id: Int): Maybe<FavoritePokemon> {
+    override fun hasPokeFavorite(id: Int): Maybe<Boolean> {
         return favoritePokemonDao.hasPokeFavorite(id)
-            .map {
-                FavoritePokemonMapper.toDomain(it)
-            }
     }
 
     override fun getPokeFavorites(): Maybe<MutableList<FavoritePokemon>> {

@@ -4,13 +4,14 @@ import com.pedromunhoz.domain.model.FavoritePokemon
 import com.pedromunhoz.domain.model.Pokemon
 import com.pedromunhoz.domain.model.PokemonClassic
 import io.reactivex.Completable
+import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
 
 interface Repository {
-    fun getClassicPokemonList(pokedexId: Int): Single<MutableList<PokemonClassic>>
+    fun getClassicPokemonList(pokedexId: Int): Flowable<MutableList<PokemonClassic>>
 
-    fun catchPokemon(id: Int): Single<Pokemon?>
+    fun catchPokemon(id: Int): Flowable<Pokemon?>
 
     fun updateFavorite(favoritePokemon: FavoritePokemon): Completable
 

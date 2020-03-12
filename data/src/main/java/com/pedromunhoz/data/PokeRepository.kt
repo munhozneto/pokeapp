@@ -11,28 +11,27 @@ class PokeRepository(
     private val localDataSource: LocalDataSource
 ) : Repository {
 
-    override fun getClassicPokemonList(pokedexId: Int): Single<MutableList<PokemonClassic>> {
+    override fun getClassicPokemonList(pokedexId: Int): Flowable<MutableList<PokemonClassic>> {
         return remoteDataSource.getClassicPokemonList(pokedexId)
-            .flatMapObservable { Observable.fromIterable(it) }
-            .flatMapSingle {
-                setFavoriteIfNeeded(it)
-                Single.just(it)
-            }
+            .flatMapIterable { it }
+            .flatMapMaybe { setFavoriteIfNeeded(it) }
             .toList()
+            .toFlowable()
     }
 
-    override fun catchPokemon(id: Int): Single<Pokemon?> {
+    override fun catchPokemon(id: Int): Flowable<Pokemon?> {
         return remoteDataSource.catchPokemon(id)
     }
 
     override fun updateFavorite(favoritePokemon: FavoritePokemon): Completable {
        return localDataSource.hasPokeFavorite(favoritePokemon.id)
-           .switchIfEmpty(Maybe.fromCallable {
-               localDataSource.insert(favoritePokemon)
-               null
-           })
-           .map {
-               localDataSource.delete(favoritePokemon.id)
+           .defaultIfEmpty(false)
+           .map { isFavorite ->
+               if (isFavorite) {
+                   localDataSource.delete(favoritePokemon.id)
+               } else {
+                   localDataSource.insert(favoritePokemon)
+               }
                Completable.complete()
            }
            .flatMapCompletable { Completable.complete() }
@@ -42,12 +41,11 @@ class PokeRepository(
         return localDataSource.getPokeFavorites()
     }
 
-    private fun setFavoriteIfNeeded(pokemonClassic: PokemonClassic): Completable {
+    private fun setFavoriteIfNeeded(pokemonClassic: PokemonClassic): Maybe<PokemonClassic> {
         return localDataSource.hasPokeFavorite(pokemonClassic.id)
+            .defaultIfEmpty(false)
             .map {
-                pokemonClassic.copy(isFavorite = true)
-                Completable.complete()
+                pokemonClassic.copy(isFavorite = it)
             }
-            .flatMapCompletable { Completable.complete() }
     }
 }

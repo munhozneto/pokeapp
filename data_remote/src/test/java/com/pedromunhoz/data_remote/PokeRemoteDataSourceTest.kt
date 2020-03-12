@@ -9,6 +9,7 @@ import com.pedromunhoz.data_remote.model.ClassicPokemonListResponse
 import com.pedromunhoz.data_remote.service.PokeApiService
 import com.pedromunhoz.data_remote.test.RemoteDataFactory
 import com.pedromunhoz.domain.model.PokemonClassic
+import io.reactivex.Flowable
 import io.reactivex.Single
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,9 +21,9 @@ class PokeRemoteDataSourceTest {
     private val remote = PokeRemoteDataSource(service)
 
     @Test
-    fun `Should assert complete when get classic pokemon list`() {
+    fun `should assert complete when get classic pokemon list`() {
         stubPokeApiServiceListClassicPokemon(
-            Single.just(
+            Flowable.just(
                 RemoteDataFactory.makeClassicPokemonList(
                     1
                 )
@@ -33,9 +34,9 @@ class PokeRemoteDataSourceTest {
     }
 
     @Test
-    fun `Should call server`() {
+    fun `should call server`() {
         stubPokeApiServiceListClassicPokemon(
-            Single.just(
+            Flowable.just(
                 RemoteDataFactory.makeClassicPokemonList(
                     1
                 )
@@ -46,13 +47,13 @@ class PokeRemoteDataSourceTest {
     }
 
     @Test
-    fun `Should returns data`() {
+    fun `should returns data`() {
         val remotePokemonClassicList =
             RemoteDataFactory.makeClassicPokemonList(
                 5
             )
         stubPokeApiServiceListClassicPokemon(
-            Single.just(remotePokemonClassicList)
+            Flowable.just(remotePokemonClassicList)
         )
 
         val domainPokemonClassicList = mutableListOf<PokemonClassic>()
@@ -69,9 +70,9 @@ class PokeRemoteDataSourceTest {
         }
     }
 
-    private fun stubPokeApiServiceListClassicPokemon(single: Single<ClassicPokemonListResponse>) {
+    private fun stubPokeApiServiceListClassicPokemon(flowable: Flowable<ClassicPokemonListResponse>) {
         whenever(
             service.listClassicPokemons(any())
-        ).thenReturn(single)
+        ).thenReturn(flowable)
     }
 }

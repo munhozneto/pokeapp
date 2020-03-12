@@ -3,9 +3,7 @@ package com.pedromunhoz.data_local.dao
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import com.pedromunhoz.data_local.db.PokeDatabase
-import com.pedromunhoz.data_local.entity.FavoritePokemonEntity
 import com.pedromunhoz.data_local.test.EntityDataFactory
-import io.reactivex.Maybe
 import org.junit.*
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -46,9 +44,9 @@ class FavoritePokemonDaoTest {
 
         favoritePokemonDao.insert(favoritePokemonEntity).test()
 
-        val favorite: FavoritePokemonEntity = favoritePokemonDao.hasPokeFavorite(favoritePokemonEntity.id).blockingGet()
+        val hasPokeFavorite = favoritePokemonDao.hasPokeFavorite(favoritePokemonEntity.id).blockingGet()
 
-        Assert.assertEquals(favorite.id, favoritePokemonEntity.id)
+        Assert.assertTrue(hasPokeFavorite)
     }
 
     @Test
@@ -59,9 +57,9 @@ class FavoritePokemonDaoTest {
 
         favoritePokemonDao.delete(favoritePokemonEntity.id).test()
 
-        val favorite: FavoritePokemonEntity? = favoritePokemonDao.hasPokeFavorite(favoritePokemonEntity.id).blockingGet()
+        val hasPokeFavorite = favoritePokemonDao.hasPokeFavorite(favoritePokemonEntity.id).blockingGet()
 
-        Assert.assertNull(favorite)
+        Assert.assertFalse(hasPokeFavorite)
     }
 
     @Test
