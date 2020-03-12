@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -13,7 +14,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    androidExtensions {
+        experimental = true
     }
 
     buildTypes {
@@ -26,11 +30,14 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":domain")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "android.arch.lifecycle:runtime:$archcomp_version"
+    implementation "android.arch.lifecycle:extensions:$archcomp_version"
+    kapt "android.arch.lifecycle:compiler:$archcomp_version"
+
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "com.nhaarman:mockito-kotlin:$mockitokotlin_version"
+    testImplementation "org.assertj:assertj-core:$assertj_version"
+    testImplementation "android.arch.core:core-testing:$archcomp_version"
 }

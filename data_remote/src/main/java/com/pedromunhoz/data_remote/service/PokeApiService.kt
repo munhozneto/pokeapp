@@ -10,9 +10,8 @@ import retrofit2.http.Path
 interface PokeApiService {
 
     @GET(PokeApiSettings.CLASSIC_POKEMON_LIST)
-    fun listClassicPokemons(
-        @Path(PokeApiSettings.PARAM_POKEDEX_ID) pokedexId: Int
-        = PokeApiSettings.PARAM_POKEDEX_ID_VALUE
+    fun classicPokemonList(
+        @Path(PokeApiSettings.PARAM_POKEDEX_ID) pokedexId: Int = PokeApiSettings.PARAM_POKEDEX_ID_VALUE
     ): Flowable<ClassicPokemonListResponse>
 
     @GET(PokeApiSettings.CATCH)

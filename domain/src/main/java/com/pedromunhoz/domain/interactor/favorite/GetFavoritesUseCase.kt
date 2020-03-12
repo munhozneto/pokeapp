@@ -6,7 +6,7 @@ import com.pedromunhoz.domain.model.FavoritePokemon
 import com.pedromunhoz.domain.repository.Repository
 import io.reactivex.Maybe
 
-class GetFavoritesUseCase(
+open class GetFavoritesUseCase(
     private val repository: Repository,
     postExecutionThread: PostExecutionThread
 ) : MaybeUseCase<MutableList<FavoritePokemon>, Unit>(postExecutionThread) {

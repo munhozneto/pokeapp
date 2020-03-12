@@ -6,7 +6,7 @@ import com.pedromunhoz.domain.model.FavoritePokemon
 import com.pedromunhoz.domain.repository.Repository
 import io.reactivex.Completable
 
-class UpdateFavoriteUseCase(
+open class UpdateFavoriteUseCase(
     private val repository: Repository,
     postExecutionThread: PostExecutionThread
 ): CompletableUseCase<UpdateFavoriteUseCase.Params>(postExecutionThread) {

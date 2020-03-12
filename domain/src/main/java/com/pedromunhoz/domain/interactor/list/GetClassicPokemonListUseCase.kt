@@ -9,10 +9,9 @@ import io.reactivex.Flowable
 open class GetClassicPokemonListUseCase (
     private val repository: Repository,
     postExecutionThread: PostExecutionThread
-) : FlowableUseCase<MutableList<PokemonClassic>, Int>(postExecutionThread) {
+) : FlowableUseCase<MutableList<PokemonClassic>, Unit?>(postExecutionThread) {
 
-    override fun buildUseCaseFlowable(params: Int?): Flowable<MutableList<PokemonClassic>> {
-        if (params == null) throw IllegalArgumentException("You must inform the pokedex id.")
-        return repository.getClassicPokemonList(params)
+    override fun buildUseCaseFlowable(params: Unit?): Flowable<MutableList<PokemonClassic>> {
+        return repository.getClassicPokemonList()
     }
 }

@@ -5,7 +5,6 @@ import com.pedromunhoz.data_local.test.DomainDataFactory
 import com.pedromunhoz.domain.executor.PostExecutionThread
 import com.pedromunhoz.domain.repository.Repository
 import io.reactivex.Completable
-import io.reactivex.Maybe
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,6 +17,7 @@ class UpdateFavoriteUseCaseTest {
 
     @Mock
     lateinit var repository: Repository
+
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
 

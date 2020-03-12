@@ -17,6 +17,7 @@ class GetFavoritesUseCaseTest {
 
     @Mock
     lateinit var repository: Repository
+
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
 

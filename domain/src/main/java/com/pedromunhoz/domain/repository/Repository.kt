@@ -9,7 +9,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 
 interface Repository {
-    fun getClassicPokemonList(pokedexId: Int): Flowable<MutableList<PokemonClassic>>
+    fun getClassicPokemonList(): Flowable<MutableList<PokemonClassic>>
 
     fun catchPokemon(id: Int): Flowable<Pokemon?>
 

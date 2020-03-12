@@ -10,7 +10,6 @@ import com.pedromunhoz.data_remote.service.PokeApiService
 import com.pedromunhoz.data_remote.test.RemoteDataFactory
 import com.pedromunhoz.domain.model.PokemonClassic
 import io.reactivex.Flowable
-import io.reactivex.Single
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
@@ -29,7 +28,7 @@ class PokeRemoteDataSourceTest {
                 )
             )
         )
-        val testObserver = remote.getClassicPokemonList(any()).test()
+        val testObserver = remote.getClassicPokemonList().test()
         testObserver.assertComplete()
     }
 
@@ -42,8 +41,8 @@ class PokeRemoteDataSourceTest {
                 )
             )
         )
-        remote.getClassicPokemonList(any()).test()
-        verify(service).listClassicPokemons(any())
+        remote.getClassicPokemonList().test()
+        verify(service).classicPokemonList(any())
     }
 
     @Test
@@ -63,7 +62,7 @@ class PokeRemoteDataSourceTest {
             domainPokemonClassicList.add(pokemonClassic)
         }
 
-        val testObserver = remote.getClassicPokemonList(any()).test()
+        val testObserver = remote.getClassicPokemonList().test()
 
         testObserver.assertValue { result ->
             result.sortedBy { it.id } == domainPokemonClassicList.sortedBy { it.id }
@@ -72,7 +71,7 @@ class PokeRemoteDataSourceTest {
 
     private fun stubPokeApiServiceListClassicPokemon(flowable: Flowable<ClassicPokemonListResponse>) {
         whenever(
-            service.listClassicPokemons(any())
+            service.classicPokemonList(any())
         ).thenReturn(flowable)
     }
 }

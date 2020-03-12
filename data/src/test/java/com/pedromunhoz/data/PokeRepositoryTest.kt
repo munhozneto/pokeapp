@@ -6,7 +6,6 @@ import com.nhaarman.mockito_kotlin.whenever
 import com.pedromunhoz.data_local.test.DomainDataFactory
 import io.reactivex.Flowable
 import io.reactivex.Maybe
-import io.reactivex.Single
 import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertTrue
 import org.junit.Before
@@ -25,7 +24,7 @@ class PokeRepositoryTest {
     @Mock
     lateinit var localDataSource: LocalDataSource
 
-    lateinit var pokeRepository: PokeRepository
+    private lateinit var pokeRepository: PokeRepository
 
     @Before
     fun setup() {
@@ -67,7 +66,7 @@ class PokeRepositoryTest {
             }
             .toMutableList()
 
-        whenever(remoteDataSource.getClassicPokemonList(1)).thenReturn(
+        whenever(remoteDataSource.getClassicPokemonList()).thenReturn(
             Flowable.just(
                 pokemonClassicList
             )
@@ -75,7 +74,7 @@ class PokeRepositoryTest {
 
         whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.just(true))
 
-        val result = pokeRepository.getClassicPokemonList(1).blockingFirst()
+        val result = pokeRepository.getClassicPokemonList().blockingFirst()
 
         result.map {
             assertTrue(it.isFavorite)
@@ -92,11 +91,11 @@ class PokeRepositoryTest {
             }
             .toMutableList()
 
-        whenever(remoteDataSource.getClassicPokemonList(1)).thenReturn(Flowable.just(pokemonClassicList))
+        whenever(remoteDataSource.getClassicPokemonList()).thenReturn(Flowable.just(pokemonClassicList))
 
         whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.empty())
 
-        val result = pokeRepository.getClassicPokemonList(1).blockingFirst()
+        val result = pokeRepository.getClassicPokemonList().blockingFirst()
 
         result.map {
             assertFalse(it.isFavorite)

@@ -7,14 +7,13 @@ import com.pedromunhoz.data_remote.service.PokeApiService
 import com.pedromunhoz.domain.model.Pokemon
 import com.pedromunhoz.domain.model.PokemonClassic
 import io.reactivex.Flowable
-import io.reactivex.Single
 
 class PokeRemoteDataSource(
     private val pokeApiService: PokeApiService
 ) : RemoteDataSource {
 
-    override fun getClassicPokemonList(pokedexId: Int): Flowable<MutableList<PokemonClassic>> {
-        return pokeApiService.listClassicPokemons(pokedexId)
+    override fun getClassicPokemonList(): Flowable<MutableList<PokemonClassic>> {
+        return pokeApiService.classicPokemonList()
             .map { responseList ->
                 responseList.pokemonClassicList.map {
                     PokemonClassicMapper.parse(it)

@@ -11,8 +11,8 @@ class PokeRepository(
     private val localDataSource: LocalDataSource
 ) : Repository {
 
-    override fun getClassicPokemonList(pokedexId: Int): Flowable<MutableList<PokemonClassic>> {
-        return remoteDataSource.getClassicPokemonList(pokedexId)
+    override fun getClassicPokemonList(): Flowable<MutableList<PokemonClassic>> {
+        return remoteDataSource.getClassicPokemonList()
             .flatMapIterable { it }
             .flatMapMaybe { setFavoriteIfNeeded(it) }
             .toList()

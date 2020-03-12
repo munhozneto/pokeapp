@@ -22,7 +22,7 @@ class CatchPokemonUseCaseTest {
     @Mock
     lateinit var postExecutionThread: PostExecutionThread
 
-    lateinit var catchPokemonUseCase: CatchPokemonUseCase
+    private lateinit var catchPokemonUseCase: CatchPokemonUseCase
 
     @Before
     fun setup() {
