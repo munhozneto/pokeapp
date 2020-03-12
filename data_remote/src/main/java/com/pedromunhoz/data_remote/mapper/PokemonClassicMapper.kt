@@ -8,7 +8,6 @@ object PokemonClassicMapper : Mapper<PokemonClassicResponse, PokemonClassic> {
         return PokemonClassic(
             remote.id,
             PokemonSpecieMapper.parse(remote.pokemonSpecie),
-            "",
             false
         )
     }

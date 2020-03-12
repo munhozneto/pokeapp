@@ -14,7 +14,10 @@ class PokeRepository(
     override fun getClassicPokemonList(pokedexId: Int): Single<MutableList<PokemonClassic>> {
         return remoteDataSource.getClassicPokemonList(pokedexId)
             .flatMapObservable { Observable.fromIterable(it) }
-            .flatMapSingle { setFavoriteIfNeeded(it) }
+            .flatMapSingle {
+                setFavoriteIfNeeded(it)
+                Single.just(it)
+            }
             .toList()
     }
 
@@ -25,11 +28,12 @@ class PokeRepository(
     override fun updateFavorite(favoritePokemon: FavoritePokemon): Completable {
        return localDataSource.hasPokeFavorite(favoritePokemon.id)
            .switchIfEmpty(Maybe.fromCallable {
-               localDataSource.insert(favoritePokemon).test()
+               localDataSource.insert(favoritePokemon)
                null
            })
            .map {
-               localDataSource.delete(favoritePokemon.id).test()
+               localDataSource.delete(favoritePokemon.id)
+               Completable.complete()
            }
            .flatMapCompletable { Completable.complete() }
     }
@@ -38,12 +42,12 @@ class PokeRepository(
         return localDataSource.getPokeFavorites()
     }
 
-    private fun setFavoriteIfNeeded(pokemonClassic: PokemonClassic): Single<PokemonClassic> {
+    private fun setFavoriteIfNeeded(pokemonClassic: PokemonClassic): Completable {
         return localDataSource.hasPokeFavorite(pokemonClassic.id)
-            .switchIfEmpty(Maybe.fromCallable { null })
             .map {
                 pokemonClassic.copy(isFavorite = true)
+                Completable.complete()
             }
-            .flatMapSingle { Single.just(pokemonClassic) }
+            .flatMapCompletable { Completable.complete() }
     }
 }
