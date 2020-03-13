@@ -9,26 +9,26 @@ import org.koin.dsl.module
 val domainModule = module {
     single {
         CatchPokemonUseCase(
-            repository =  get(),
-           postExecutionThread =  get()
+            repository = get(),
+            postExecutionThread = get()
         )
     }
     single {
         GetFavoritesUseCase(
-            repository =  get(),
-            postExecutionThread =  get()
+            repository = get(),
+            postExecutionThread = get()
         )
     }
     single {
         UpdateFavoriteUseCase(
-            repository =  get(),
-            postExecutionThread =  get()
+            repository = get(),
+            postExecutionThread = get()
         )
     }
     single {
         GetClassicPokemonListUseCase(
-            repository =  get(),
-            postExecutionThread =  get()
+            repository = get(),
+            postExecutionThread = get()
         )
     }
 }

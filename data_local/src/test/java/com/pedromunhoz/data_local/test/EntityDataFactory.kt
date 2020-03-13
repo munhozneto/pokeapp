@@ -5,7 +5,6 @@ import com.pedromunhoz.data_local.entity.FavoritePokemonEntity
 object EntityDataFactory {
     fun makeFavoritePokemon() = FavoritePokemonEntity(
         DataFactory.randomInt(),
-        DataFactory.randomString(),
         DataFactory.randomString()
     )
 

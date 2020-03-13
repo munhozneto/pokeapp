@@ -41,19 +41,12 @@ class PokeDataSource(
     }
 
     override fun insert(favoritePokemon: FavoritePokemon): Completable {
-        return Completable.defer {
-            favoritePokemonDao.insert(
-                favoritePokemon = FavoritePokemonMapper.fromDomain(favoritePokemon)
-            )
-            Completable.complete()
-        }
+        return favoritePokemonDao.insert(
+            favoritePokemon = FavoritePokemonMapper.fromDomain(favoritePokemon)
+        )
     }
 
     override fun delete(id: Int): Completable {
-        return Completable.defer {
-            favoritePokemonDao.delete(id)
-            Completable.complete()
-        }
+        return favoritePokemonDao.delete(id)
     }
-
 }

@@ -2,6 +2,7 @@ package com.pedromunhoz.pokeapp.di
 
 
 import com.pedromunhoz.presentation.ClassicPokemonListViewModel
+import com.pedromunhoz.presentation.FavoritePokemonListViewModel
 import com.pedromunhoz.presentation.mapper.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -45,7 +46,13 @@ val presentationModule = module {
         ClassicPokemonListViewModel(
             getClassicPokemonListUseCase = get(),
             updateFavoriteUseCase = get(),
-            pokemonClassicMapper = get(),
+            pokemonClassicMapper = get()
+        )
+    }
+    viewModel {
+        FavoritePokemonListViewModel(
+            getFavoritesUseCase = get(),
+            updateFavoriteUseCase = get(),
             favoritePokemonMapper = get()
         )
     }

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/detailAppBarLayout">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_20dp"
+        app:cardBackgroundColor="@color/grey_BCBCBC"
+        app:cardElevation="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/margin_20dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <ImageView
+                android:id="@+id/detailFrontImageView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/white"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineImageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_place_holder" />
+
+            <ImageView
+                android:id="@+id/detailBackImageView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:layout_marginEnd="@dimen/margin_10dp"
+                android:adjustViewBounds="true"
+                android:background="@android:color/white"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guidelineImageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_place_holder" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detailInfoContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:background="@drawable/bg_detail_info"
+                android:padding="@dimen/margin_10dp"
+                android:paddingBottom="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/detailBackImageView"
+                app:layout_constraintStart_toStartOf="@+id/detailFrontImageView"
+                app:layout_constraintTop_toBottomOf="@+id/detailFrontImageView">
+
+                <TextView
+                    android:id="@+id/detailNameTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_marginEnd="@dimen/margin_10dp"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/text_size_30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/detailBaseExperienceTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Picachu" />
+
+                <TextView
+                    android:id="@+id/detailBaseExperienceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:layout_marginEnd="@dimen/margin_10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="78" />
+
+                <TextView
+                    android:id="@+id/detailWeightLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/detail_weight_label"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detailNameTextView" />
+
+                <TextView
+                    android:id="@+id/detailWeightTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintStart_toEndOf="@+id/detailWeightLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/detailNameTextView"
+                    tools:text="11.2" />
+
+                <TextView
+                    android:id="@+id/detailHeightLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/detail_height_label"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/detailHeightTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/detailNameTextView" />
+
+                <TextView
+                    android:id="@+id/detailHeightTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/detailBaseExperienceTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/detailNameTextView"
+                    tools:text="0.8" />
+
+                <TextView
+                    android:id="@+id/detailAbilitiesLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/detail_abilities_label"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detailWeightLabelTextView" />
+
+                <TextView
+                    android:id="@+id/detailAbilitiesTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/detailWeightLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/detailWeightLabelTextView"
+                    tools:text="chlorophyll, overgrow, overgrow, overgrow, overgrow" />
+
+                <TextView
+                    android:id="@+id/detailStatsLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/detail_stats_label"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detailAbilitiesTextView" />
+
+                <TextView
+                    android:id="@+id/detailStatsTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/detailWeightLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/detailAbilitiesTextView"
+                    tools:text="speed: 45, special-defense: 62" />
+
+                <TextView
+                    android:id="@+id/detailTypesLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/detail_type_label"
+                    android:textColor="@color/black_000000"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detailStatsTextView" />
+
+                <TextView
+                    android:id="@+id/detailTypesTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:paddingBottom="@dimen/margin_10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/detailWeightLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/detailStatsTextView"
+                    tools:text="poison, grass, poison, grass, poison, grass, poison, grass, poison, grass" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

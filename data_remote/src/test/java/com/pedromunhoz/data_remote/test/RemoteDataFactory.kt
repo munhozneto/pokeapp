@@ -7,12 +7,12 @@ import com.pedromunhoz.domain.model.PokemonClassic
 import com.pedromunhoz.domain.model.PokemonSpecie
 
 object RemoteDataFactory {
-    fun makePokemonClassic() = PokemonClassicResponse(
+    private fun makePokemonClassic() = PokemonClassicResponse(
         DataFactory.randomInt(),
         makePokemonSpecie()
     )
 
-    fun makePokemonSpecie() = PokemonSpecieResponse(
+    private fun makePokemonSpecie() = PokemonSpecieResponse(
         DataFactory.randomString()
     )
 

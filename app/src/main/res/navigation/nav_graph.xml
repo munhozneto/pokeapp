@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/classicPokemonListFragment">
+
+    <fragment
+        android:id="@+id/classicPokemonListFragment"
+        android:name="com.pedromunhoz.pokeapp.ui.fragment.ClassicPokemonListFragment"
+        tools:layout="@layout/fragment_pokemon_list"
+        android:label="ClassicPokemonListFragment" >
+        <action
+            android:id="@+id/action_bottom_classic_to_details"
+            app:destination="@id/detailsActivity" />
+        <argument
+            android:name="pokemonId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritePokemonListFragment"
+        android:name="com.pedromunhoz.pokeapp.ui.fragment.FavoritePokemonListFragment"
+        tools:layout="@layout/fragment_pokemon_list"
+        android:label="FavoritePokemonListFragment" >
+        <action
+            android:id="@+id/action_bottom_favorite_to_details"
+            app:destination="@id/detailsActivity" />
+        <argument
+            android:name="pokemonId"
+            app:argType="integer" />
+    </fragment>
+
+    <activity
+        android:id="@+id/detailsActivity"
+        android:label="activity_details_header"
+        tools:layout="@layout/activity_detail" />
+</navigation>

@@ -7,7 +7,6 @@ import com.pedromunhoz.domain.model.PokemonSpecie
 object DomainDataFactory {
     fun makeFavoritePokemon() = FavoritePokemon(
         DataFactory.randomInt(),
-        DataFactory.randomString(),
         DataFactory.randomString()
     )
 

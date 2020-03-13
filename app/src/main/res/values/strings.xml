@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">PokeApp</string>
+    <string name="action_pokemons">POKEMONS</string>
+    <string name="action_favorites">FAVORITES</string>
+    <string name="empty_pokedex">EMPTY POKEDEX</string>
+    <string name="catch_fail">CATCH FAIL</string>
+    <string name="error_msg">Don\'t worry, we\'re working to fix this.</string>
+    <string name="detail_weight_label">Weight:</string>
+    <string name="detail_height_label">Height:</string>
+    <string name="detail_abilities_label">Abilities</string>
+    <string name="detail_stats_label">Stats:</string>
+    <string name="detail_type_label">Types:</string>
+    <string name="detail_activity_title">PokeDetail</string>
+    <string name="loading">loading…</string>
+    <string name="title_activity_nav_host">NavHost</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="image_url">https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%1$s.png</string>
 </resources>

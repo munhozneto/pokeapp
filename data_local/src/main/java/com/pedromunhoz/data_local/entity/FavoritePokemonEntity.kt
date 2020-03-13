@@ -7,6 +7,5 @@ import androidx.room.PrimaryKey
 class FavoritePokemonEntity(
     @PrimaryKey(autoGenerate = false)
     val id: Int,
-    val name: String,
-    val imgUrl: String
+    val name: String
 )

@@ -1,11 +1,11 @@
-package com.pedromunhoz.data_local.test
+package com.pedromunhoz.domain.test
 
+import com.pedromunhoz.data_local.test.DataFactory
 import com.pedromunhoz.domain.model.*
 
 object DomainDataFactory {
     fun makeFavoritePokemon() = FavoritePokemon(
         DataFactory.randomInt(),
-        DataFactory.randomString(),
         DataFactory.randomString()
     )
 
@@ -23,7 +23,7 @@ object DomainDataFactory {
         DataFactory.randomBoolean()
     )
 
-    fun makePokemonSpecie() = PokemonSpecie(
+    private fun makePokemonSpecie() = PokemonSpecie(
         DataFactory.randomString()
     )
 

@@ -26,15 +26,13 @@ class PokeRepository(
     override fun updateFavorite(favoritePokemon: FavoritePokemon): Completable {
        return localDataSource.hasPokeFavorite(favoritePokemon.id)
            .defaultIfEmpty(false)
-           .map { isFavorite ->
+           .flatMapCompletable { isFavorite ->
                if (isFavorite) {
                    localDataSource.delete(favoritePokemon.id)
                } else {
                    localDataSource.insert(favoritePokemon)
                }
-               Completable.complete()
            }
-           .flatMapCompletable { Completable.complete() }
     }
 
     override fun getPokeFavorites(): Maybe<MutableList<FavoritePokemon>> {

@@ -7,16 +7,14 @@ object FavoritePokemonMapper : Mapper<FavoritePokemonEntity, FavoritePokemon> {
     override fun toDomain(entity: FavoritePokemonEntity): FavoritePokemon {
         return FavoritePokemon(
             entity.id,
-            entity.name,
-            entity.imgUrl
+            entity.name
         )
     }
 
     override fun fromDomain(domain: FavoritePokemon): FavoritePokemonEntity {
         return FavoritePokemonEntity(
             domain.id,
-            domain.name,
-            domain.imgUrl
+            domain.name
         )
     }
 }

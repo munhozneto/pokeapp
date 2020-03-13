@@ -25,6 +25,17 @@ android {
     configurations.all {
         resolutionStrategy.force "androidx.arch.core:core-runtime:$core_runtime_version"
     }
+// To inline the bytecode built with JVM target 1.8 into
+// bytecode that is being built with JVM target 1.6. (e.g. navArgs)
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -43,6 +54,8 @@ dependencies {
     implementation "com.google.android.material:material:$material_design_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.recyclerview:recyclerview:$recylerview_version"
+
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"

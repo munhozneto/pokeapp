@@ -5,7 +5,6 @@ import com.nhaarman.mockito_kotlin.*
 import com.pedromunhoz.domain.interactor.favorite.UpdateFavoriteUseCase
 import com.pedromunhoz.domain.interactor.list.GetClassicPokemonListUseCase
 import com.pedromunhoz.domain.model.PokemonClassic
-import com.pedromunhoz.presentation.mapper.FavoritePokemonMapper
 import com.pedromunhoz.presentation.mapper.PokemonClassicMapper
 import com.pedromunhoz.presentation.mapper.PokemonSpecieMapper
 import com.pedromunhoz.presentation.test.DomainDataFactory
@@ -29,13 +28,10 @@ class ClassicPokemonListViewModelTest {
         PokemonSpecieMapper()
     )
 
-    private val favoritePokemonMapper = FavoritePokemonMapper()
-
     private val classicPokemonListViewModel = ClassicPokemonListViewModel(
         getClassicPokemonListUseCase,
         updateFavoriteUseCase,
-        pokemonClassicMapper,
-        favoritePokemonMapper
+        pokemonClassicMapper
     )
 
     @Captor
@@ -43,9 +39,6 @@ class ClassicPokemonListViewModelTest {
 
     @Captor
     private val getClassicPokemonListCaptorError = argumentCaptor<((Throwable) -> Unit)>()
-
-    @Captor
-    private val updateFavoritePokemonCaptor = argumentCaptor<(() -> Unit)>()
 
     @Captor
     private val updateFavoritePokemonCaptorError = argumentCaptor<((Throwable) -> Unit)>()
@@ -109,11 +102,12 @@ class ClassicPokemonListViewModelTest {
 
     @Test
     fun `Update favorite pokemon list should execute one time`() {
-        val favoritePokemon = DomainDataFactory.makeFavoritePokemon()
-        val favoritePokemonBinding = favoritePokemonMapper.fromDomain(favoritePokemon)
+        val pokemonClassicBinding = pokemonClassicMapper.fromDomain(
+            DomainDataFactory.makePokemonClassic()
+        )
 
         classicPokemonListViewModel.updateFavorite(
-            favoritePokemonBinding
+            pokemonClassicBinding
         )
         verify(updateFavoriteUseCase, times(1))
             .execute(any(), any(), any())
@@ -121,11 +115,12 @@ class ClassicPokemonListViewModelTest {
 
     @Test
     fun `Update favorite pokemon list should returns success`() {
-        val favoritePokemon = DomainDataFactory.makeFavoritePokemon()
-        val favoritePokemonBinding = favoritePokemonMapper.fromDomain(favoritePokemon)
+        val pokemonClassicBinding = pokemonClassicMapper.fromDomain(
+            DomainDataFactory.makePokemonClassic()
+        )
 
         classicPokemonListViewModel.updateFavorite(
-            favoritePokemonBinding
+            pokemonClassicBinding
         )
         verify(updateFavoriteUseCase, times(1))
             .execute(any(), any(), updateFavoritePokemonCaptorError.capture())
@@ -133,6 +128,7 @@ class ClassicPokemonListViewModelTest {
 
         assertEquals(
             ViewState.Status.ERROR,
-            classicPokemonListViewModel.getUpdateFavoriteEvent().value?.status)
+            classicPokemonListViewModel.getUpdateFavoriteEvent().value?.status
+        )
     }
 }

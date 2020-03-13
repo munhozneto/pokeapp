@@ -1,5 +1,6 @@
-package com.pedromunhoz.data_local.test
+package com.pedromunhoz.data.test
 
+import com.pedromunhoz.data_local.test.DataFactory
 import com.pedromunhoz.domain.model.FavoritePokemon
 import com.pedromunhoz.domain.model.PokemonClassic
 import com.pedromunhoz.domain.model.PokemonSpecie
@@ -7,17 +8,8 @@ import com.pedromunhoz.domain.model.PokemonSpecie
 object DomainDataFactory {
     fun makeFavoritePokemon() = FavoritePokemon(
         DataFactory.randomInt(),
-        DataFactory.randomString(),
         DataFactory.randomString()
     )
-
-    fun makeFavoritePokemonList(count: Int): MutableList<FavoritePokemon> {
-        val events = mutableListOf<FavoritePokemon>()
-        repeat(count) {
-            events.add(makeFavoritePokemon())
-        }
-        return events
-    }
 
     fun makePokemonClassic() = PokemonClassic(
         DataFactory.randomInt(),
@@ -25,7 +17,7 @@ object DomainDataFactory {
         DataFactory.randomBoolean()
     )
 
-    fun makePokemonSpecie() = PokemonSpecie(
+    private fun makePokemonSpecie() = PokemonSpecie(
         DataFactory.randomString()
     )
 

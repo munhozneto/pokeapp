@@ -3,11 +3,11 @@ package com.pedromunhoz.data
 import com.nhaarman.mockito_kotlin.times
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
-import com.pedromunhoz.data_local.test.DomainDataFactory
+import com.pedromunhoz.data.test.DomainDataFactory
 import io.reactivex.Flowable
 import io.reactivex.Maybe
-import junit.framework.Assert.assertFalse
-import junit.framework.Assert.assertTrue
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

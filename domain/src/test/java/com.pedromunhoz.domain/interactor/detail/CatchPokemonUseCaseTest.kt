@@ -2,7 +2,7 @@ package com.pedromunhoz.domain.interactor.detail
 
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
-import com.pedromunhoz.data_local.test.DomainDataFactory
+import com.pedromunhoz.domain.test.DomainDataFactory
 import com.pedromunhoz.domain.executor.PostExecutionThread
 import com.pedromunhoz.domain.repository.Repository
 import io.reactivex.Flowable

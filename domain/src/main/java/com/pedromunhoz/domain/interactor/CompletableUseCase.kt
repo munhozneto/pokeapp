@@ -17,8 +17,7 @@ abstract class CompletableUseCase<in Params> constructor(
     open fun execute(
         params: Params? = null,
         complete: () -> Unit,
-        error: (e: Throwable) -> Unit
-    ) {
+        error: (e: Throwable) -> Unit) {
         val completable = this.buildUseCaseCompletable(params)
             .subscribeOn(Schedulers.io())
             .observeOn(postExecutionThread.scheduler)
