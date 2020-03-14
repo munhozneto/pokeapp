@@ -23,6 +23,10 @@ class ClassicPokemonListFragment : BaseFragment() {
 
     private lateinit var pokeListAdapter: ClassicPokemonListAdapter
 
+    companion object {
+        fun newInstance() = ClassicPokemonListFragment()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(viewModel)

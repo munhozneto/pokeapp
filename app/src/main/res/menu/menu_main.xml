@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.com.pmn.pokelist.ui.main.MainActivity">
     <item
-        android:id="@+id/classicPokemonListFragment"
+        android:id="@+id/action_pokemons"
         android:title="@string/action_pokemons"
         app:showAsAction="ifRoom"
         android:checked="true"
         android:icon="@drawable/ic_list_white_18dp" />
     <item
-        android:id="@+id/favoritePokemonListFragment"
+        android:id="@+id/action_favorites"
         android:title="@string/action_favorites"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_favorite_white_18dp" />

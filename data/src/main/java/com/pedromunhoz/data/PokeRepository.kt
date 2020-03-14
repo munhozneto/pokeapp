@@ -4,7 +4,9 @@ import com.pedromunhoz.domain.model.FavoritePokemon
 import com.pedromunhoz.domain.model.Pokemon
 import com.pedromunhoz.domain.model.PokemonClassic
 import com.pedromunhoz.domain.repository.Repository
-import io.reactivex.*
+import io.reactivex.Completable
+import io.reactivex.Flowable
+import io.reactivex.Maybe
 
 class PokeRepository(
     private val remoteDataSource: RemoteDataSource,
@@ -24,15 +26,14 @@ class PokeRepository(
     }
 
     override fun updateFavorite(favoritePokemon: FavoritePokemon): Completable {
-       return localDataSource.hasPokeFavorite(favoritePokemon.id)
-           .defaultIfEmpty(false)
-           .flatMapCompletable { isFavorite ->
-               if (isFavorite) {
-                   localDataSource.delete(favoritePokemon.id)
-               } else {
-                   localDataSource.insert(favoritePokemon)
-               }
-           }
+        return localDataSource.hasPokeFavorite(favoritePokemon.id)
+            .flatMapCompletable { isFavorite ->
+                if (isFavorite) {
+                    localDataSource.delete(favoritePokemon.id)
+                } else {
+                    localDataSource.insert(favoritePokemon)
+                }
+            }
     }
 
     override fun getPokeFavorites(): Maybe<MutableList<FavoritePokemon>> {

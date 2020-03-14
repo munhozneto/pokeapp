@@ -63,4 +63,9 @@ class FavoritePokemonListViewModel(
             }
         )
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        getFavoritesUseCase.dispose()
+    }
 }

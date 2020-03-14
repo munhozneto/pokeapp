@@ -18,8 +18,8 @@ interface FavoritePokemonDao {
     fun getPokeFavorites(): Maybe<MutableList<FavoritePokemonEntity>>
 
     @Insert(onConflict = REPLACE)
-    fun insert(favoritePokemon: FavoritePokemonEntity): Completable
+    fun insert(favoritePokemon: FavoritePokemonEntity)
 
     @Query(DataSourceContract.DELETE_FAVORITE_POKEMON)
-    fun delete(id: Int): Completable
+    fun delete(id: Int)
 }

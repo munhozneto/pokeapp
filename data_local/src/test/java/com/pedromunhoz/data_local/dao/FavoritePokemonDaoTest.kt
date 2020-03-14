@@ -42,7 +42,7 @@ class FavoritePokemonDaoTest {
     fun `should insert data with success`() {
         val favoritePokemonEntity = EntityDataFactory.makeFavoritePokemon()
 
-        favoritePokemonDao.insert(favoritePokemonEntity).test()
+        favoritePokemonDao.insert(favoritePokemonEntity)
 
         val hasPokeFavorite = favoritePokemonDao.hasPokeFavorite(favoritePokemonEntity.id).blockingGet()
 
@@ -53,9 +53,9 @@ class FavoritePokemonDaoTest {
     fun `should delete data with success`() {
         val favoritePokemonEntity = EntityDataFactory.makeFavoritePokemon()
 
-        favoritePokemonDao.insert(favoritePokemonEntity).test()
+        favoritePokemonDao.insert(favoritePokemonEntity)
 
-        favoritePokemonDao.delete(favoritePokemonEntity.id).test()
+        favoritePokemonDao.delete(favoritePokemonEntity.id)
 
         val hasPokeFavorite = favoritePokemonDao.hasPokeFavorite(favoritePokemonEntity.id).blockingGet()
 
@@ -67,7 +67,7 @@ class FavoritePokemonDaoTest {
         val favoritePokemonList = EntityDataFactory.makeFavoritePokemonList(3)
 
         favoritePokemonList.forEach {
-            favoritePokemonDao.insert(it).test()
+            favoritePokemonDao.insert(it)
         }
 
         val favoriteFromDatabaseList = favoritePokemonDao.getPokeFavorites().blockingGet()

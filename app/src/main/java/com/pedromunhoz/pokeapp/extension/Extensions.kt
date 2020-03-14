@@ -6,7 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
+
+fun AppCompatActivity.isDisplayedByTag(fragmentTag: String): Boolean {
+    val fragment = this.supportFragmentManager.findFragmentByTag(fragmentTag)
+    return fragment != null && fragment.isVisible
+}
+
+fun FragmentActivity.replace(@IdRes id: Int, fragment: Fragment) {
+    this.supportFragmentManager
+        .beginTransaction()
+        .replace(id, fragment, fragment?.javaClass?.canonicalName)
+        .commit()
+}
 
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View =
         LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)

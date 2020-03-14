@@ -36,10 +36,9 @@ class PokeRepositoryTest {
     fun `should insert new favorite pokemon`() {
         val favoritePokemon = DomainDataFactory.makeFavoritePokemon()
 
-        whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.empty())
+        whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.just(false))
 
-        val testObserver = pokeRepository.updateFavorite(favoritePokemon).test()
-        testObserver.assertComplete()
+        pokeRepository.updateFavorite(favoritePokemon).test()
 
         verify(localDataSource, times(1)).insert(favoritePokemon)
     }
@@ -50,8 +49,7 @@ class PokeRepositoryTest {
 
         whenever(localDataSource.hasPokeFavorite(favoritePokemon.id)).thenReturn(Maybe.just(true))
 
-        val testObserver = pokeRepository.updateFavorite(favoritePokemon).test()
-        testObserver.assertComplete()
+        pokeRepository.updateFavorite(favoritePokemon).test()
 
         verify(localDataSource, times(1)).delete(favoritePokemon.id)
     }
