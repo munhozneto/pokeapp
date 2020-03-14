@@ -27,7 +27,7 @@ abstract class BaseFragment : Fragment() {
         val progressBar = inflater.inflate(R.layout.view_progress_dialog, null)
         val params = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
 
-        progressContainer = RelativeLayout(activity)
+        progressContainer = RelativeLayout(context)
         progressContainer?.addView(progressBar)
         progressContainer?.gravity = Gravity.CENTER
         progressContainer?.hide()

@@ -1,8 +1,6 @@
 package com.pedromunhoz.presentation.test
 
-import com.pedromunhoz.domain.model.FavoritePokemon
-import com.pedromunhoz.domain.model.PokemonClassic
-import com.pedromunhoz.domain.model.PokemonSpecie
+import com.pedromunhoz.domain.model.*
 
 object DomainDataFactory {
     fun makeFavoritePokemon() = FavoritePokemon(
@@ -35,4 +33,21 @@ object DomainDataFactory {
         }
         return events
     }
+
+    fun makePokemon() = Pokemon(
+        DataFactory.randomInt(),
+        DataFactory.randomString(),
+        DataFactory.randomInt(),
+        DataFactory.randomInt(),
+        mutableListOf(),
+        mutableListOf(),
+        makeSprites(),
+        DataFactory.randomInt(),
+        mutableListOf()
+    )
+
+    private fun makeSprites() = Sprites(
+        DataFactory.randomString(),
+        DataFactory.randomString()
+    )
 }

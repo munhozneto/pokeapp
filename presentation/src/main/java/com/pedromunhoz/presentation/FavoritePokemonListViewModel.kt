@@ -30,7 +30,7 @@ class FavoritePokemonListViewModel(
         }
     }
 
-    private fun fetchFavoritePokemonList() {
+    fun fetchFavoritePokemonList() {
         state.postValue(ViewState(ViewState.Status.LOADING))
         getFavoritesUseCase.execute(
             null,

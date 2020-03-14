@@ -24,7 +24,7 @@ class PokemonDetailsViewModel(
         }
     }
 
-    private fun fetchPokemonDetails() {
+    fun fetchPokemonDetails() {
         catchPokemonState.postValue(ViewState(ViewState.Status.LOADING))
         catchPokemonUseCase.execute(
             pokemonId,
