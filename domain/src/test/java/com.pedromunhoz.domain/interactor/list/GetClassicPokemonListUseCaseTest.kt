@@ -30,7 +30,7 @@ class GetClassicPokemonListUseCaseTest {
     }
 
     @Test
-    fun `Get classic pokemon list should complete`() {
+    fun `get classic pokemon list should complete`() {
         val classicPokemonList = DomainDataFactory.makeClassicPokemonList(4)
 
         whenever(repository.getClassicPokemonList()).thenReturn(Flowable.just(classicPokemonList))
@@ -40,7 +40,7 @@ class GetClassicPokemonListUseCaseTest {
     }
 
     @Test
-    fun `Get classic pokemon list should returns data`() {
+    fun `get classic pokemon list should returns data`() {
         val classicPokemonList = DomainDataFactory.makeClassicPokemonList(4)
 
         whenever(repository.getClassicPokemonList()).thenReturn(Flowable.just(classicPokemonList))

@@ -31,7 +31,7 @@ class CatchPokemonUseCaseTest {
     }
 
     @Test
-    fun `Get pokemon details should complete`() {
+    fun `get pokemon details should complete`() {
         val pokemonDetail = DomainDataFactory.makePokemon()
 
         whenever(repository.catchPokemon(any())).thenReturn(Flowable.just(pokemonDetail))
@@ -41,7 +41,7 @@ class CatchPokemonUseCaseTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun `Get pokemon details without id should returns exception`() {
+    fun `get pokemon details without id should returns exception`() {
         val pokemonDetail = DomainDataFactory.makePokemon()
 
         whenever(repository.catchPokemon(any())).thenReturn(Flowable.just(pokemonDetail))
@@ -50,7 +50,7 @@ class CatchPokemonUseCaseTest {
     }
 
     @Test
-    fun `Get pokemon details should returns data`() {
+    fun `get pokemon details should returns data`() {
         val pokemonDetail = DomainDataFactory.makePokemon()
 
         whenever(repository.catchPokemon(any())).thenReturn(Flowable.just(pokemonDetail))

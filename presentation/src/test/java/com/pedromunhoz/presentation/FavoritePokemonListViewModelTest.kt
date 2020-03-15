@@ -40,14 +40,14 @@ class FavoritePokemonListViewModelTest {
     private val updateFavoritePokemonCaptorError = argumentCaptor<((Throwable) -> Unit)>()
 
     @Test
-    fun `Fetch favorite pokemon list should execute one time`() {
+    fun `fetch favorite pokemon list should execute one time`() {
         favoritePokemonListViewModel.fetchFavoritePokemonList()
         verify(getFavoritesUseCase, times(1))
             .execute(eq(null), any(), any(), eq(null))
     }
 
     @Test
-    fun `Fetch favorite pokemon list should returns success`() {
+    fun `fetch favorite pokemon list should returns success`() {
         val favoritePokemon = DomainDataFactory.makeFavoritePokemonList(4)
 
         favoritePokemonListViewModel.fetchFavoritePokemonList()
@@ -64,7 +64,7 @@ class FavoritePokemonListViewModelTest {
     }
 
     @Test
-    fun `Fetch favorite pokemon list should returns data`() {
+    fun `fetch favorite pokemon list should returns data`() {
         val favoritePokemonList = DomainDataFactory.makeFavoritePokemonList(4)
         val favoritePokemonBindingList = favoritePokemonList.map {
             favoritePokemonMapper.fromDomain(it)
@@ -84,7 +84,7 @@ class FavoritePokemonListViewModelTest {
     }
 
     @Test
-    fun `Fetch favorite pokemon list should returns error`() {
+    fun `fetch favorite pokemon list should returns error`() {
         favoritePokemonListViewModel.fetchFavoritePokemonList()
         verify(getFavoritesUseCase, times(1))
             .execute(eq(null), any(), getFavoritePokemonListCaptorError.capture(), eq(null))
@@ -97,7 +97,7 @@ class FavoritePokemonListViewModelTest {
     }
 
     @Test
-    fun `Update favorite pokemon should execute one time`() {
+    fun `update favorite pokemon should execute one time`() {
         val favoritePokemonBinding = favoritePokemonMapper.fromDomain(
             DomainDataFactory.makeFavoritePokemon()
         )
@@ -110,7 +110,7 @@ class FavoritePokemonListViewModelTest {
     }
 
     @Test
-    fun `Update favorite pokemon should returns success`() {
+    fun `update favorite pokemon should returns success`() {
         val favoritePokemonBinding = favoritePokemonMapper.fromDomain(
             DomainDataFactory.makeFavoritePokemon()
         )

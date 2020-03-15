@@ -30,7 +30,7 @@ class UpdateFavoriteUseCaseTest {
     }
 
     @Test
-    fun `Update favorite pokemon should complete`() {
+    fun `update favorite pokemon should complete`() {
         val favorite = DomainDataFactory.makeFavoritePokemon()
 
         whenever(repository.updateFavorite(favorite)).thenReturn(Completable.complete())
@@ -42,7 +42,7 @@ class UpdateFavoriteUseCaseTest {
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun `Update favorite pokemon without param should returns exception`() {
+    fun `update favorite pokemon without param should returns exception`() {
         updateFavoriteUseCase.buildUseCaseCompletable().test()
     }
 }

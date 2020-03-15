@@ -30,7 +30,7 @@ class GetFavoritesUseCaseTest {
     }
 
     @Test
-    fun `Get favorites should complete`() {
+    fun `get favorites should complete`() {
         val favorites = DomainDataFactory.makeFavoritePokemonList(3)
 
         whenever(repository.getPokeFavorites()).thenReturn(Maybe.just(favorites))
@@ -40,7 +40,7 @@ class GetFavoritesUseCaseTest {
     }
 
     @Test
-    fun `Get favorites should return data`() {
+    fun `get favorites should return data`() {
         val favorites = DomainDataFactory.makeFavoritePokemonList(3)
 
         whenever(repository.getPokeFavorites()).thenReturn(Maybe.just(favorites))

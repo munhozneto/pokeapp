@@ -40,14 +40,14 @@ class PokemonDetailsViewModelTest {
     private val getPokemonDetailsCaptorError = argumentCaptor<((Throwable) -> Unit)>()
 
     @Test
-    fun `Fetch pokemon details should execute one time`() {
+    fun `fetch pokemon details should execute one time`() {
         pokemonDetailsViewModel.fetchPokemonDetails()
         verify(catchPokemonUseCase, times(1))
             .execute(any(), any(), any(), eq(null))
     }
 
     @Test
-    fun `Fetch pokemon details should returns success`() {
+    fun `fetch pokemon details should returns success`() {
         val pokemon = DomainDataFactory.makePokemon()
 
         val pokemonClassicBinding = pokemonMapper.fromDomain(
@@ -67,7 +67,7 @@ class PokemonDetailsViewModelTest {
     }
 
     @Test
-    fun `Fetch pokemon details should returns error`() {
+    fun `fetch pokemon details should returns error`() {
         pokemonDetailsViewModel.fetchPokemonDetails()
         verify(catchPokemonUseCase, times(1))
             .execute(any(), any(), getPokemonDetailsCaptorError.capture(), eq(null))

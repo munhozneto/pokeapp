@@ -44,14 +44,14 @@ class ClassicPokemonListViewModelTest {
     private val updateFavoritePokemonCaptorError = argumentCaptor<((Throwable) -> Unit)>()
 
     @Test
-    fun `Fetch classic pokemon list should execute one time`() {
+    fun `fetch classic pokemon list should execute one time`() {
         classicPokemonListViewModel.fetchClassicPokemonList()
         verify(getClassicPokemonListUseCase, times(1))
             .execute(eq(null), any(), any(), eq(null))
     }
 
     @Test
-    fun `Fetch classic pokemon list should returns success`() {
+    fun `fetch classic pokemon list should returns success`() {
         val classicPokemonList = DomainDataFactory.makeClassicPokemonList(4)
 
         classicPokemonListViewModel.fetchClassicPokemonList()
@@ -68,7 +68,7 @@ class ClassicPokemonListViewModelTest {
     }
 
     @Test
-    fun `Fetch classic pokemon list should returns data`() {
+    fun `fetch classic pokemon list should returns data`() {
         val classicPokemonList = DomainDataFactory.makeClassicPokemonList(4)
         val classicPokemonBindingList = classicPokemonList.map {
             pokemonClassicMapper.fromDomain(it)
@@ -88,7 +88,7 @@ class ClassicPokemonListViewModelTest {
     }
 
     @Test
-    fun `Fetch classic pokemon list should returns error`() {
+    fun `fetch classic pokemon list should returns error`() {
         classicPokemonListViewModel.fetchClassicPokemonList()
         verify(getClassicPokemonListUseCase, times(1))
             .execute(eq(null), any(), getClassicPokemonListCaptorError.capture(), eq(null))
@@ -101,7 +101,7 @@ class ClassicPokemonListViewModelTest {
     }
 
     @Test
-    fun `Update favorite pokemon list should execute one time`() {
+    fun `update favorite pokemon list should execute one time`() {
         val pokemonClassicBinding = pokemonClassicMapper.fromDomain(
             DomainDataFactory.makePokemonClassic()
         )
@@ -114,7 +114,7 @@ class ClassicPokemonListViewModelTest {
     }
 
     @Test
-    fun `Update favorite pokemon list should returns success`() {
+    fun `update favorite pokemon list should returns success`() {
         val pokemonClassicBinding = pokemonClassicMapper.fromDomain(
             DomainDataFactory.makePokemonClassic()
         )
