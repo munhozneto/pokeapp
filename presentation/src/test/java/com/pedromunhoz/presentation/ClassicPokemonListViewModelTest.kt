@@ -40,9 +40,6 @@ class ClassicPokemonListViewModelTest {
     @Captor
     private val getClassicPokemonListCaptorError = argumentCaptor<((Throwable) -> Unit)>()
 
-    @Captor
-    private val updateFavoritePokemonCaptorError = argumentCaptor<((Throwable) -> Unit)>()
-
     @Test
     fun `fetch classic pokemon list should execute one time`() {
         classicPokemonListViewModel.fetchClassicPokemonList()
@@ -97,38 +94,6 @@ class ClassicPokemonListViewModelTest {
         assertEquals(
             ViewState.Status.ERROR,
             classicPokemonListViewModel.getState().value?.status
-        )
-    }
-
-    @Test
-    fun `update favorite pokemon list should execute one time`() {
-        val pokemonClassicBinding = pokemonClassicMapper.fromDomain(
-            DomainDataFactory.makePokemonClassic()
-        )
-
-        classicPokemonListViewModel.updateFavorite(
-            pokemonClassicBinding
-        )
-        verify(updateFavoriteUseCase, times(1))
-            .execute(any(), any(), any())
-    }
-
-    @Test
-    fun `update favorite pokemon list should returns success`() {
-        val pokemonClassicBinding = pokemonClassicMapper.fromDomain(
-            DomainDataFactory.makePokemonClassic()
-        )
-
-        classicPokemonListViewModel.updateFavorite(
-            pokemonClassicBinding
-        )
-        verify(updateFavoriteUseCase, times(1))
-            .execute(any(), any(), updateFavoritePokemonCaptorError.capture())
-        updateFavoritePokemonCaptorError.firstValue.invoke(RuntimeException())
-
-        assertEquals(
-            ViewState.Status.ERROR,
-            classicPokemonListViewModel.getUpdateFavoriteEvent().value?.status
         )
     }
 }

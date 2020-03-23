@@ -71,5 +71,6 @@ class ClassicPokemonListViewModel(
     override fun onCleared() {
         super.onCleared()
         getClassicPokemonListUseCase.dispose()
+        updateFavoriteUseCase.dispose()
     }
 }

@@ -11,7 +11,7 @@ interface LocalDataSource {
 
     fun getPokeFavorites():  Maybe<MutableList<FavoritePokemon>>
 
-    fun insert(favoritePokemon: FavoritePokemon): Completable
+    fun insert(favoritePokemon: FavoritePokemon):  Maybe<Int>
 
-    fun delete(id: Int): Completable
+    fun delete(id: Int):  Maybe<Int>
 }

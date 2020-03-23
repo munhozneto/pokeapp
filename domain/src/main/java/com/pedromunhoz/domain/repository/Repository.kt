@@ -13,7 +13,7 @@ interface Repository {
 
     fun catchPokemon(id: Int): Flowable<Pokemon?>
 
-    fun updateFavorite(favoritePokemon: FavoritePokemon): Completable
+    fun updateFavorite(favoritePokemon: FavoritePokemon): Maybe<Int>
 
     fun getPokeFavorites(): Maybe<MutableList<FavoritePokemon>>
 }

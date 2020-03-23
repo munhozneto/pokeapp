@@ -7,7 +7,6 @@ import com.pedromunhoz.data_local.DataSourceContract.POKE_DATABASE
 import com.pedromunhoz.data_local.db.PokeDatabase
 import com.pedromunhoz.data_local.mapper.FavoritePokemonMapper
 import com.pedromunhoz.domain.model.FavoritePokemon
-import io.reactivex.Completable
 import io.reactivex.Maybe
 
 class PokeDataSource(
@@ -40,19 +39,17 @@ class PokeDataSource(
             }
     }
 
-    override fun insert(favoritePokemon: FavoritePokemon): Completable {
-        return Completable.defer {
+    override fun insert(favoritePokemon: FavoritePokemon): Maybe<Int> {
+        return Maybe.just(
             favoritePokemonDao.insert(
                 favoritePokemon = FavoritePokemonMapper.fromDomain(favoritePokemon)
-            )
-            Completable.complete()
-        }
+            ).toInt()
+        )
     }
 
-    override fun delete(id: Int): Completable {
-        return Completable.defer {
+    override fun delete(id: Int): Maybe<Int> {
+        return Maybe.just(
             favoritePokemonDao.delete(id)
-            Completable.complete()
-        }
+        )
     }
 }

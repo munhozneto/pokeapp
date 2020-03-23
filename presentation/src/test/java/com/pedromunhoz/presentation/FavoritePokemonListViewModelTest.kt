@@ -37,6 +37,9 @@ class FavoritePokemonListViewModelTest {
     private val getFavoritePokemonListCaptorError = argumentCaptor<((Throwable) -> Unit)>()
 
     @Captor
+    private val updateFavoritePokemonCaptor = argumentCaptor<((Int) -> Unit)>()
+
+    @Captor
     private val updateFavoritePokemonCaptorError = argumentCaptor<((Throwable) -> Unit)>()
 
     @Test
@@ -98,28 +101,41 @@ class FavoritePokemonListViewModelTest {
 
     @Test
     fun `update favorite pokemon should execute one time`() {
+        val favoritePokemon = DomainDataFactory.makeFavoritePokemon()
+
         val favoritePokemonBinding = favoritePokemonMapper.fromDomain(
-            DomainDataFactory.makeFavoritePokemon()
+            favoritePokemon
         )
 
         favoritePokemonListViewModel.updateFavorite(
             favoritePokemonBinding
         )
         verify(updateFavoriteUseCase, times(1))
-            .execute(any(), any(), any())
+            .execute(
+                eq(UpdateFavoriteUseCase.Params(favoritePokemon)),
+                updateFavoritePokemonCaptor.capture(),
+                any(),
+                eq(null)
+            )
     }
 
     @Test
     fun `update favorite pokemon should returns success`() {
+        val favoritePokemon = DomainDataFactory.makeFavoritePokemon()
         val favoritePokemonBinding = favoritePokemonMapper.fromDomain(
-            DomainDataFactory.makeFavoritePokemon()
+            favoritePokemon
         )
 
         favoritePokemonListViewModel.updateFavorite(
             favoritePokemonBinding
         )
         verify(updateFavoriteUseCase, times(1))
-            .execute(any(), any(), updateFavoritePokemonCaptorError.capture())
+            .execute(
+                eq(UpdateFavoriteUseCase.Params(favoritePokemon)),
+                any(),
+                updateFavoritePokemonCaptorError.capture(),
+                eq(null)
+            )
         updateFavoritePokemonCaptorError.firstValue.invoke(RuntimeException())
 
         Assert.assertEquals(

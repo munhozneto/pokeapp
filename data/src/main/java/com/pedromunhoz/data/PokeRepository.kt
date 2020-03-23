@@ -4,7 +4,6 @@ import com.pedromunhoz.domain.model.FavoritePokemon
 import com.pedromunhoz.domain.model.Pokemon
 import com.pedromunhoz.domain.model.PokemonClassic
 import com.pedromunhoz.domain.repository.Repository
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 
@@ -25,9 +24,9 @@ class PokeRepository(
         return remoteDataSource.catchPokemon(id)
     }
 
-    override fun updateFavorite(favoritePokemon: FavoritePokemon): Completable {
+    override fun updateFavorite(favoritePokemon: FavoritePokemon): Maybe<Int> {
         return localDataSource.hasPokeFavorite(favoritePokemon.id)
-            .flatMapCompletable { isFavorite ->
+            .flatMap { isFavorite ->
                 if (isFavorite) {
                     localDataSource.delete(favoritePokemon.id)
                 } else {

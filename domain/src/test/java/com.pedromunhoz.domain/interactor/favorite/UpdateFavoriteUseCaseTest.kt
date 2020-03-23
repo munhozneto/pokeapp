@@ -5,6 +5,7 @@ import com.pedromunhoz.domain.test.DomainDataFactory
 import com.pedromunhoz.domain.executor.PostExecutionThread
 import com.pedromunhoz.domain.repository.Repository
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -33,9 +34,9 @@ class UpdateFavoriteUseCaseTest {
     fun `update favorite pokemon should complete`() {
         val favorite = DomainDataFactory.makeFavoritePokemon()
 
-        whenever(repository.updateFavorite(favorite)).thenReturn(Completable.complete())
+        whenever(repository.updateFavorite(favorite)).thenReturn(Maybe.just(0))
 
-        val testObserver = updateFavoriteUseCase.buildUseCaseCompletable(
+        val testObserver = updateFavoriteUseCase.buildUseCaseMaybe(
             UpdateFavoriteUseCase.Params(favorite)
         ).test()
         testObserver.assertComplete()
@@ -43,6 +44,6 @@ class UpdateFavoriteUseCaseTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun `update favorite pokemon without param should returns exception`() {
-        updateFavoriteUseCase.buildUseCaseCompletable().test()
+        updateFavoriteUseCase.buildUseCaseMaybe().test()
     }
 }

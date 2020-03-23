@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.pedromunhoz.data_local.DataSourceContract
 import com.pedromunhoz.data_local.entity.FavoritePokemonEntity
-import io.reactivex.Completable
 import io.reactivex.Maybe
 
 @Dao
@@ -18,8 +17,8 @@ interface FavoritePokemonDao {
     fun getPokeFavorites(): Maybe<MutableList<FavoritePokemonEntity>>
 
     @Insert(onConflict = REPLACE)
-    fun insert(favoritePokemon: FavoritePokemonEntity)
+    fun insert(favoritePokemon: FavoritePokemonEntity): Long
 
     @Query(DataSourceContract.DELETE_FAVORITE_POKEMON)
-    fun delete(id: Int)
+    fun delete(id: Int): Int
 }
