@@ -17,10 +17,10 @@ object RemoteDataFactory {
     )
 
     fun makeClassicPokemonList(count: Int): ClassicPokemonListResponse {
-        val events = mutableListOf<PokemonClassicResponse>()
+        val list = mutableListOf<PokemonClassicResponse>()
         repeat(count) {
-            events.add(makePokemonClassic())
+            list.add(makePokemonClassic())
         }
-        return ClassicPokemonListResponse(events)
+        return ClassicPokemonListResponse(list)
     }
 }

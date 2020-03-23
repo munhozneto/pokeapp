@@ -9,10 +9,10 @@ object EntityDataFactory {
     )
 
     fun makeFavoritePokemonList(count: Int): MutableList<FavoritePokemonEntity> {
-        val events = mutableListOf<FavoritePokemonEntity>()
+        val list = mutableListOf<FavoritePokemonEntity>()
         repeat(count) {
-            events.add(makeFavoritePokemon())
+            list.add(makeFavoritePokemon())
         }
-        return events
+        return list
     }
 }

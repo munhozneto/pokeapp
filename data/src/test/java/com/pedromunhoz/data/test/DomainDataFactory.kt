@@ -22,10 +22,10 @@ object DomainDataFactory {
     )
 
     fun makeClassicPokemonList(count: Int): MutableList<PokemonClassic> {
-        val events = mutableListOf<PokemonClassic>()
+        val list = mutableListOf<PokemonClassic>()
         repeat(count) {
-            events.add(makePokemonClassic())
+            list.add(makePokemonClassic())
         }
-        return events
+        return list
     }
 }

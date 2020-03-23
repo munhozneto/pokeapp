@@ -10,11 +10,11 @@ object DomainDataFactory {
     )
 
     fun makeFavoritePokemonList(count: Int): MutableList<FavoritePokemon> {
-        val events = mutableListOf<FavoritePokemon>()
+        val list = mutableListOf<FavoritePokemon>()
         repeat(count) {
-            events.add(makeFavoritePokemon())
+            list.add(makeFavoritePokemon())
         }
-        return events
+        return list
     }
 
     fun makePokemonClassic() = PokemonClassic(
@@ -28,11 +28,11 @@ object DomainDataFactory {
     )
 
     fun makeClassicPokemonList(count: Int): MutableList<PokemonClassic> {
-        val events = mutableListOf<PokemonClassic>()
+        val list = mutableListOf<PokemonClassic>()
         repeat(count) {
-            events.add(makePokemonClassic())
+            list.add(makePokemonClassic())
         }
-        return events
+        return list
     }
 
     fun makePokemon() = Pokemon(
